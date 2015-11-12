@@ -1,0 +1,39 @@
+{
+  "name": "croc",
+  "version": "0.0.1",
+  "description": "",
+  "bin": {
+    "crocx": "./bin/croc-cli.js",
+    "croc": "./bin/croc-es5-cli.js"
+  },
+  "scripts": {
+    "pretest": "npm run lint",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint --ignore-path .gitignore bin lib ",
+    "build": "rollup -c"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xpavelf/croc.git"
+  },
+  "author": "",
+  "license": "Unlicense",
+  "bugs": {
+    "url": "https://github.com/xpavelf/croc/issues"
+  },
+  "homepage": "https://github.com/xpavelf/croc#readme",
+  "dependencies": {
+    "chalk": "^1.1.1",
+    "docopt": "^0.6.2",
+    "es6-shim": "^0.33.13",
+    "graphlib": "^1.0.7",
+    "semver": "^5.0.3",
+    "shelljs": "^0.5.3",
+    "text-table": "^0.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^1.9.0",
+    "rollup": "^0.20.5",
+    "rollup-plugin-babel": "^1.0.0"
+  }
+}
