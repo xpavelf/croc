@@ -1,14 +1,14 @@
 {
   "name": "croc",
   "version": "0.0.2",
-  "description": "",
+  "description": "monolithic repository manager",
   "bin": {
     "crocx": "./bin/croc-cli.js",
     "croc": "./bin/croc-es5-cli.js"
   },
   "scripts": {
-    "pretest": "npm run lint",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "pretest": "npm run lint && npm run build",
+    "test": "echo \"No test is available.\"",
     "lint": "eslint --ignore-path .gitignore bin lib ",
     "build": "rollup -c"
   },

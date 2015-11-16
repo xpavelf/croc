@@ -1,0 +1,7 @@
+{
+  "name": "p1",
+  "version": "1.0.0",
+  "dependencies": {
+    "p0": "1.0.*"
+  }
+}

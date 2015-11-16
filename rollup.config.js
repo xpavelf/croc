@@ -1,6 +1,6 @@
 import babel from 'rollup-plugin-babel';
 
-const pkg = require('./package.json').dependencies;
+var pkg = require('./package.json').dependencies;
 
 
 export default {

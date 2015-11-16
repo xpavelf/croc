@@ -1,8 +1,9 @@
 # croc
 monolithic repository manager
 
-[![NPM version](https://img.shields.io/npm/v/croc.svg?style=flat-square)](https://npmjs.org/package/croc)
-[![Dependency Status](https://david-dm.org/xpavelf/croc.svg?style=flat-square)](https://david-dm.org/xpavelf/croc)
+[![NPM version](https://img.shields.io/npm/v/croc.svg)](https://npmjs.org/package/croc)
+[![Build Status](https://travis-ci.org/xpavelf/croc.svg?branch=master)](https://travis-ci.org/xpavelf/croc)
+[![Dependency Status](https://david-dm.org/xpavelf/croc.svg)](https://david-dm.org/xpavelf/croc)
 
 ## What does it mean?
 
