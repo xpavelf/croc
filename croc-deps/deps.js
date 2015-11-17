@@ -1,11 +1,9 @@
 import graphlib from 'graphlib';
 import semver from 'semver';
-import cList from './list';
-import table from 'text-table';
-import chalk from 'chalk';
-import ansiTrim from './utils/ansiTrim';
+import cList from 'croc-list';
 
-const order = ({strict, json}) => {
+
+const order = ({strict}) => {
   const graph = new graphlib.Graph();
   const packages = cList.packages(true);
 
@@ -20,23 +18,13 @@ const order = ({strict, json}) => {
       .forEach(dName => graph.setEdge(pkg.name, dName, pkgDeps[dName]));
   });
 
-  if (json) {
-    return graphlib.alg.topsort(graph).reverse();
-  } else {
-    const dOrder = graphlib.alg.topsort(graph).reverse();
-    const tbody = dOrder.map(pName => [
-      chalk.yellow(pName),
+  return graphlib.alg.topsort(graph)
+    .reverse()
+    .map(pName => [
+      pName,
       packages.get(pName).version,
-      graph.successors(pName).map(dName => dName + chalk.gray('#' + graph.edge(pName, dName)))
+      graph.successors(pName).map(dName => dName + '#' + graph.edge(pName, dName))
     ]);
-
-    const thead = ['Package', 'Version' ,'Depends on'].map(n => chalk.underline(n));
-
-    return table([thead].concat(tbody), {
-      align: ['l', 'r', 'l'],
-      stringLength: s => ansiTrim(s).length
-    });
-  }
 };
 
 export default { order };

@@ -1,0 +1,18 @@
+{
+  "name": "croc-deps",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/deps-es5.js",  
+  "jsnext:main": "deps.js",
+  "scripts": {
+    "test": "echo \"No test is available.\"",
+    "build": "rollup -c"
+  },
+  "author": "Pavel Fatrdla",
+  "license": "Unlicense",
+  "dependencies": {
+    "croc-list": "file:../croc-list",
+    "graphlib": "^1.0.7",
+    "semver": "^5.0.3"
+  }
+}

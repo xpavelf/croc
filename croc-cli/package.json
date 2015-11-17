@@ -16,7 +16,7 @@
     "type": "git",
     "url": "git+https://github.com/xpavelf/croc.git"
   },
-  "author": "",
+  "author": "Pavel Fatrdla",
   "license": "Unlicense",
   "bugs": {
     "url": "https://github.com/xpavelf/croc/issues"
@@ -24,11 +24,10 @@
   "homepage": "https://github.com/xpavelf/croc#readme",
   "dependencies": {
     "chalk": "^1.1.1",
+    "croc-deps": "file:../croc-deps",
+    "croc-list": "file:../croc-list",
     "docopt": "^0.6.2",
     "es6-shim": "^0.33.13",
-    "graphlib": "^1.0.7",
-    "semver": "^5.0.3",
-    "shelljs": "^0.5.3",
     "text-table": "^0.2.0"
   },
   "devDependencies": {

@@ -1,0 +1,16 @@
+{
+  "name": "croc-list",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/list-es5.js",
+  "jsnext:main": "list.js",
+  "scripts": {
+    "test": "echo \"No test is available.\"",
+    "build": "rollup -c"
+  },
+  "author": "Pavel Fatrdla",
+  "license": "Unlicense",
+  "dependencies": {
+    "shelljs": "^0.5.3"
+  }
+}
