@@ -1,15 +1,22 @@
 import shell from 'shelljs';
+import path from 'path';
 const cwd = process.cwd();
 
-
+const _ignoreFileName = '.crocignore';
+const _getIgnored = () => {
+  const ipath = path.join(cwd, _ignoreFileName);
+  if (shell.test('-e', ipath)) {
+    return shell.cat(ipath).split('\n');
+  }
+  return [];
+};
 
 const packages = () => {
+  const ignored = _getIgnored();
   const packages = shell
     .find(cwd)
     .filter(f => f.endsWith('package.json'))
-    .filter(f => !f.includes('node_modules'))
-    .filter(f => !f.includes('test'))
-    .filter(f => !f.includes('.c9'))
+    .filter(f => ignored.every(ifile => !f.includes(ifile)))
     .reduce((sum, f) => {
       const info = require(f);
       return sum.set(info.name, { name: info.name, version: info.version, file: f });

@@ -12,7 +12,6 @@ Well croc goes away from standard npm approach having packages in separated repo
 ## How croc works?
 
 ## Todo
-* .crocignore
 * croc.config.json
 
 

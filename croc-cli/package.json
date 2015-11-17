@@ -31,8 +31,6 @@
     "text-table": "^0.2.0"
   },
   "devDependencies": {
-    "eslint": "^1.9.0",
-    "rollup": "^0.20.5",
-    "rollup-plugin-babel": "^1.0.0"
+    "eslint": "^1.9.0"
   }
 }
