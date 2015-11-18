@@ -10,7 +10,10 @@
     "pretest": "npm run lint && npm run build",
     "test": "echo \"No test is available.\"",
     "lint": "eslint --ignore-path .gitignore bin lib ",
-    "build": "rollup -c"
+    
+    "prebuild": "rm -f bin/croc-es5-cli.js",
+    "build": "babel --presets es2015 -o bin/croc-es5-cli.js bin/croc-cli.js",
+    "postbuild": "sed -i '1 i\\#!/usr/bin/env node' bin/croc-es5-cli.js"
   },
   "repository": {
     "type": "git",

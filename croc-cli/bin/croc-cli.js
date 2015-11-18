@@ -12,7 +12,7 @@ Options:
   --strict      Ignore project dependency if it doesn't satisfies version (semver)
 `;
 
-import { docopt } from 'docopt';
+const docopt = require('docopt').docopt;
 const args = docopt(doc, { version : '0.0.1' });
 
 import list from 'croc-list';
@@ -20,12 +20,16 @@ import dependency from 'croc-deps';
 
 import table from 'text-table';
 import chalk from 'chalk';
-import ansiTrim from '../lib/utils/ansiTrim';
+
+const r = new RegExp('\x1b(?:\\[(?:\\d+[ABCDEFGJKSTm]|\\d+;\\d+[Hfm]|' +
+        '\\d+;\\d+;\\d+m|6n|s|u|\\?25[lh])|\\w)', 'g');
+
+const _ansiTrim = (str) => str.replace(r, '');
 
 const _print = res => console.log(res);
 
 const _printTable = ({ thead, tbody, options }) => {
-  const opts = Object.assign({ stringLength: s => ansiTrim(s).length }, options);
+  const opts = Object.assign({ stringLength: s => _ansiTrim(s).length }, options);
   const thead_und = thead.map(n => chalk.underline(n));
   const t = table([thead_und].concat(tbody), opts);
   _print(t); 
@@ -71,4 +75,3 @@ if (args.ls) {
 } else if (args.build) {
   console.error('Not implemented yet!');
 }
-

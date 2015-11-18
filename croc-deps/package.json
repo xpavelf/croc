@@ -6,7 +6,8 @@
   "jsnext:main": "deps.js",
   "scripts": {
     "test": "echo \"No test is available.\"",
-    "build": "rollup -c"
+    "prebuild": "rm -rf dist/ && mkdir dist",
+    "build": "babel --presets es2015 -o dist/deps-es5.js deps.js"
   },
   "author": "Pavel Fatrdla",
   "license": "Unlicense",

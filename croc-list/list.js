@@ -11,7 +11,7 @@ const _getIgnored = () => {
   return [];
 };
 
-const packages = () => {
+export function packages() {
   const ignored = _getIgnored();
   const packages = shell
     .find(cwd)
@@ -25,4 +25,3 @@ const packages = () => {
   return packages;
 };
 
-export default { packages };
