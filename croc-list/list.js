@@ -13,7 +13,7 @@ const _getIgnored = () => {
 
 export function packages() {
   const ignored = _getIgnored();
-  const packages = shell
+  const pkgs = shell
     .find(cwd)
     .filter(f => f.endsWith('package.json'))
     .filter(f => ignored.every(ifile => !f.includes(ifile)))
@@ -22,6 +22,6 @@ export function packages() {
       return sum.set(info.name, { name: info.name, version: info.version, file: f });
     }, new Map());
   
-  return packages;
+  return pkgs;
 };
 

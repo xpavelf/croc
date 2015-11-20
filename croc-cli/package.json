@@ -10,7 +10,6 @@
     "pretest": "npm run lint && npm run build",
     "test": "echo \"No test is available.\"",
     "lint": "eslint --ignore-path .gitignore bin lib ",
-    
     "prebuild": "rm -f bin/croc-es5-cli.js",
     "build": "babel --presets es2015 -o bin/croc-es5-cli.js bin/croc-cli.js",
     "postbuild": "sed -i '1 i\\#!/usr/bin/env node' bin/croc-es5-cli.js"
@@ -27,8 +26,9 @@
   "homepage": "https://github.com/xpavelf/croc#readme",
   "dependencies": {
     "chalk": "^1.1.1",
-    "croc-deps": "file:../croc-deps",
-    "croc-list": "file:../croc-list",
+    "croc-deps": "0.0.1",
+    "croc-link": "0.0.1",
+    "croc-list": "0.0.1",
     "docopt": "^0.6.2",
     "es6-shim": "^0.33.13",
     "text-table": "^0.2.0"

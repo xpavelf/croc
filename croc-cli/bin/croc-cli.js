@@ -2,21 +2,22 @@ const doc =
 `
 Usage:
   croc ls [--json]
-  croc deps [--strict --json]
-  croc [ link | test | build | unlink ]
+  croc deps [--lenient --json]
+  croc ( link [--lenient] | test | build )
 
 Options:
   -h --help     Show this screen.
   --version     Show version.
   --json        Show information in JSON format.
-  --strict      Ignore project dependency if it doesn't satisfies version (semver)
+  --lenient     Ignore that project dependency doesn't satisfies version (semver)
 `;
 
 const docopt = require('docopt').docopt;
 const args = docopt(doc, { version : '0.0.1' });
 
-import list from 'croc-list';
-import dependency from 'croc-deps';
+import * as list from 'croc-list';
+import * as deps from 'croc-deps';
+import * as link from 'croc-link';
 
 import table from 'text-table';
 import chalk from 'chalk';
@@ -49,7 +50,7 @@ if (args.ls) {
   }
   
 } else if (args.deps) {
-  const order = dependency.order({ strict: args['--strict'] });
+  const order = deps.order({ lenient: args['--lenient'] });
   if (args['--json']) {
     _print(order);  
   } else {
@@ -67,9 +68,7 @@ if (args.ls) {
   }
   
 } else if (args.link) {
-  console.error('Not implemented yet!');
-} else if (args.unlink) {
-  console.error('Not implemented yet!');
+  link.link({ lenient: args['--lenient'] });
 } else if (args.test) {
   console.error('Not implemented yet!');
 } else if (args.build) {

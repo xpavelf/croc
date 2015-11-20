@@ -1,11 +1,10 @@
 import graphlib from 'graphlib';
 import semver from 'semver';
-import cList from 'croc-list';
+import * as list from 'croc-list';
 
-
-const order = ({strict}) => {
+export function order({lenient}) {
   const graph = new graphlib.Graph();
-  const packages = cList.packages(true);
+  const packages = list.packages();
 
   packages.forEach((pkg) => {
     const info = require(pkg.file);
@@ -14,7 +13,7 @@ const order = ({strict}) => {
     
     Object.keys(pkgDeps)
       .filter(dName => packages.has(dName))
-      .filter(dName => !strict || semver.satisfies(packages.get(dName).version, pkgDeps[dName]))
+      .filter(dName => lenient || semver.satisfies(packages.get(dName).version, pkgDeps[dName]))
       .forEach(dName => graph.setEdge(pkg.name, dName, pkgDeps[dName]));
   });
 
@@ -26,8 +25,6 @@ const order = ({strict}) => {
       graph.successors(pName).map(dName => dName + '#' + graph.edge(pName, dName))
     ]);
 };
-
-export default { order };
 
 // const findPredecessors = (graph, node) => {
 //   let acc = new Set()
