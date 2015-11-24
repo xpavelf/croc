@@ -3,7 +3,7 @@ const doc =
 Usage:
   croc ls [--json]
   croc deps [--lenient --json]
-  croc ( link [--lenient] | test | build )
+  croc ( link [--lenient] | install | test | build )
 
 Options:
   -h --help     Show this screen.
@@ -74,4 +74,6 @@ if (args.ls) {
   exec.exec({ cmd: 'npm test'});
 } else if (args.build) {
   exec.exec({ cmd: 'npm run build' });
+} else if (args.install) {
+  exec.exec({ cmd: 'npm install' });
 }
