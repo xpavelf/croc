@@ -1,5 +1,19 @@
-sudo: false
 language: node_js
 node_js:
-  - "0.12"
   - "4"
+  - "0.12"
+install: 
+  - npm i -g babel-cli eslint croc
+  - npm i babel-preset-es2015
+before_script:
+  - croc link
+  - croc install
+script:
+  - croc build
+  - croc test
+after_success:
+  - croc-cli/bin/croc-es5-cli.js ls
+  - croc-cli/bin/croc-es5-cli.js link
+  - croc-cli/bin/croc-es5-cli.js install
+  - croc-cli/bin/croc-es5-cli.js build
+  - croc-cli/bin/croc-es5-cli.js test
