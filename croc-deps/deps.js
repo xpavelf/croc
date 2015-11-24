@@ -22,7 +22,8 @@ export function order({lenient}) {
     .map(pName => [
       pName,
       packages.get(pName).version,
-      graph.successors(pName).map(dName => dName + '#' + graph.edge(pName, dName))
+      graph.successors(pName).map(dName => dName + '#' + graph.edge(pName, dName)),
+      packages.get(pName).file
     ]);
 };
 

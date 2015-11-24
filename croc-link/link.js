@@ -7,8 +7,7 @@ export function link({ lenient }) {
   const pkgs = list.packages();
   const order = deps.order({ lenient });
   
-  order.forEach(([pkg, , deps]) => {
-    const pkgjson = pkgs.get(pkg).file;
+  order.forEach(([pkg, , deps, pkgjson]) => {
     const mapping = deps.forEach(dep => {
       const [dName] = dep.split('#');
         const linkPath = path.join(path.dirname(pkgjson), 'node_modules');

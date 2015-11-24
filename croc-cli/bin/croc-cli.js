@@ -18,6 +18,7 @@ const args = docopt(doc, { version : '0.0.1' });
 import * as list from 'croc-list';
 import * as deps from 'croc-deps';
 import * as link from 'croc-link';
+import * as exec from 'croc-exec';
 
 import table from 'text-table';
 import chalk from 'chalk';
@@ -70,7 +71,7 @@ if (args.ls) {
 } else if (args.link) {
   link.link({ lenient: args['--lenient'] });
 } else if (args.test) {
-  console.error('Not implemented yet!');
+  exec.exec({ cmd: 'npm test'});
 } else if (args.build) {
-  console.error('Not implemented yet!');
+  exec.exec({ cmd: 'npm run build' });
 }

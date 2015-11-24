@@ -1,6 +1,6 @@
 {
   "name": "croc",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "monolithic repository manager",
   "bin": {
     "crocx": "./bin/croc-cli.js",
@@ -27,6 +27,7 @@
   "dependencies": {
     "chalk": "^1.1.1",
     "croc-deps": "0.0.1",
+    "croc-exec": "0.0.1",
     "croc-link": "0.0.1",
     "croc-list": "0.0.1",
     "docopt": "^0.6.2",
@@ -35,5 +36,10 @@
   },
   "devDependencies": {
     "eslint": "^1.9.0"
-  }
+  },
+  "bundledDependencies": [
+    "croc-deps",
+    "croc-list",
+    "croc-link"
+  ]
 }
