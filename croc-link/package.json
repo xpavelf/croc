@@ -1,13 +1,11 @@
 {
   "name": "croc-link",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "",
-  "main": "dist/link-es5.js",
-  "jsnext:main": "link.js",
+  "main": "link.js",
   "scripts": {
     "test": "echo \"No test is available.\"",
-    "prebuild": "rm -rf dist/ && mkdir dist",
-    "build": "babel --presets es2015 -o dist/link-es5.js link.js"
+    "build": "echo \"No need for build.\""
   },
   "author": "Pavel Fatrdla",
   "license": "Unlicense",

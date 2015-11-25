@@ -1,13 +1,11 @@
 {
   "name": "croc-list",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "",
-  "main": "dist/list-es5.js",
-  "jsnext:main": "list.js",
+  "main": "list.js",
   "scripts": {
     "test": "echo \"No test is available.\"",
-    "prebuild": "rm -rf dist/ && mkdir dist",
-    "build": "babel --presets es2015 -o dist/list-es5.js list.js"
+    "build": "echo \"No need for build.\""
   },
   "author": "Pavel Fatrdla",
   "license": "Unlicense",

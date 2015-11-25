@@ -1,53 +1,53 @@
-const doc = 
-`
-Usage:
-  croc ls [--json]
-  croc deps [--lenient --json]
-  croc ( link [--lenient] | install | test | build )
+#!/usr/bin/env node
+var doc = ''+
+'Usage:                                                                                \n'+
+'  croc ls [--json]                                                                    \n'+
+'  croc deps [--lenient --json]                                                        \n'+
+'  croc ( link [--lenient] | install | test | build )                                  \n'+
+'                                                                                      \n'+
+'Options:                                                                              \n'+
+'  -h --help     Show this screen.                                                     \n'+
+'  --version     Show version.                                                         \n'+
+'  --json        Show information in JSON format.                                      \n'+
+'  --lenient     Ignore that project dependency doesnt satisfies version (semver)      \n';
 
-Options:
-  -h --help     Show this screen.
-  --version     Show version.
-  --json        Show information in JSON format.
-  --lenient     Ignore that project dependency doesn't satisfies version (semver)
-`;
+var docopt = require('docopt').docopt;
+var args = docopt(doc, { version : require('../package.json').version });
 
-const docopt = require('docopt').docopt;
-const args = docopt(doc, { version : require('../package.json').version });
+var list = require('croc-list');
+var deps = require('croc-deps');
+var link = require('croc-link');
+var exec = require('croc-exec');
 
-import * as list from 'croc-list';
-import * as deps from 'croc-deps';
-import * as link from 'croc-link';
-import * as exec from 'croc-exec';
+var table = require('text-table');
+var chalk = require('chalk');
 
-import table from 'text-table';
-import chalk from 'chalk';
-
-const r = new RegExp('\x1b(?:\\[(?:\\d+[ABCDEFGJKSTm]|\\d+;\\d+[Hfm]|' +
+var r = new RegExp('\x1b(?:\\[(?:\\d+[ABCDEFGJKSTm]|\\d+;\\d+[Hfm]|' +
         '\\d+;\\d+;\\d+m|6n|s|u|\\?25[lh])|\\w)', 'g');
 
-const _ansiTrim = (str) => str.replace(r, '');
+var _ansiTrim = function(str) { return str.replace(r, ''); };
 
-const _print = res => console.log(res);
+var _print = function(res) { console.log(res); };
 
-const _printTable = ({ thead, tbody, options }) => {
-  options.stringLength = s => _ansiTrim(s).length;
-  const thead_und = thead.map(n => chalk.underline(n));
-  const t = table([thead_und].concat(tbody), options);
+var _printTable = function(tableObj) {
+  var tbl = tableObj || {};
+  tbl.options.stringLength = function(s) { return _ansiTrim(s).length; };
+  var thead_und = tbl.thead.map(function(n) { return chalk.underline(n); });
+  var t = table([thead_und].concat(tbl.tbody), tbl.options);
   _print(t); 
 };
 
 
 
 if (args.ls) {
-  const pkgs = list.packages();
+  var pkgs = list.packages();
   if (args['--json']) {
     _print(pkgs);
   } else {
     _printTable({
       thead: ['Package', 'Version', 'Location'],
-      tbody: Object.keys(pkgs).map(key => {
-        const pkg = pkgs[key];
+      tbody: Object.keys(pkgs).map(function(key) {
+        var pkg = pkgs[key];
         return [chalk.yellow(pkg.name), pkg.version, pkg.file];
       }),
       options: { align: ['l', 'r', 'l'] }
@@ -55,19 +55,23 @@ if (args.ls) {
   }
   
 } else if (args.deps) {
-  const order = deps.order({ lenient: args['--lenient'] });
+  var order = deps.order({ lenient: args['--lenient'] });
   if (args['--json']) {
     _print(order);  
   } else {
-    const depMap = dep => {
-      const [d0, d1] = dep.split('#'); 
-      return d0 + chalk.gray('#' + d1);
+    var depMap = function(dep) {
+      var d = dep.split('#'); 
+      return d[0] + chalk.gray('#' + d[1]);
     };
     
     _printTable({
       thead: ['Package', 'Version' ,'Depends on'],
-      tbody: order.map(([pkg, ver, depon]) => [
-        chalk.yellow(pkg), ver, depon.map(depMap)]),
+      tbody: order.map(function(pkgInfo) { 
+        var pkg = pkgInfo[0];
+        var ver = pkgInfo[1];
+        var depon = pkgInfo[2];
+        return [chalk.yellow(pkg), ver, depon.map(depMap)]; 
+      }),
       options: { align: ['l', 'r', 'l'] }
     });
   }

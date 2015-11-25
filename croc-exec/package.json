@@ -1,13 +1,11 @@
 {
   "name": "croc-exec",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "",
-  "main": "dist/exec-es5.js",
-  "jsnext:main": "exec.js",
+  "main": "exec.js",
   "scripts": {
     "test": "echo \"No test is available.\"",
-    "prebuild": "rm -rf dist/ && mkdir dist",
-    "build": "babel --presets es2015 -o dist/exec-es5.js exec.js"
+    "build": "echo \"No need for build.\""
   },
   "author": "Pavel Fatrdla",
   "license": "Unlicense",

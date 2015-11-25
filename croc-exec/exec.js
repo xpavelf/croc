@@ -1,13 +1,14 @@
-import * as deps from 'croc-deps';
-import path from 'path';
-import shelljs from 'shelljs';
+var deps = require('croc-deps');
+var path = require('path');
+var shelljs = require('shelljs');
 
-export function exec({ cmd }) {
-  const order = deps.order({ latient: true });
+exports.exec = function(options) {
+  var opt = options || {};
+  var order = deps.order({ latient: true });
   order
-    .map(([,,,pkgjson]) => path.dirname(pkgjson))
-    .forEach(modulePath => {
+    .map(function(pkgInfo){ return path.dirname(pkgInfo[3]); })
+    .forEach(function(modulePath) {
       shelljs.cd(modulePath);
-      shelljs.exec(cmd);
+      shelljs.exec(options.cmd);
     });
 };

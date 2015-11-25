@@ -1,19 +1,17 @@
 {
   "name": "croc-deps",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "",
-  "main": "dist/deps-es5.js",
-  "jsnext:main": "deps.js",
+  "main": "deps.js",
   "scripts": {
     "test": "echo \"No test is available.\"",
-    "prebuild": "rm -rf dist/ && mkdir dist",
-    "build": "babel --presets es2015 -o dist/deps-es5.js deps.js"
+    "build": "echo \"No need for build.\""
   },
   "author": "Pavel Fatrdla",
   "license": "Unlicense",
   "dependencies": {
     "croc-list": "~0.0.2",
     "graphlib": "~1.0.7",
-  "semver": "~5.0.3"
+    "semver": "~5.0.3"
   }
 }

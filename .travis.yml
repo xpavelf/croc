@@ -3,8 +3,7 @@ node_js:
   - "4"
   - "0.12"
 install: 
-  - npm i -g babel-cli eslint croc
-  - npm i babel-preset-es2015
+  - npm i -g eslint croc
 before_script:
   - croc link
   - croc install
@@ -12,8 +11,9 @@ script:
   - croc build
   - croc test
 after_success:
-  - croc-cli/bin/croc-es5-cli.js ls
-  - croc-cli/bin/croc-es5-cli.js link
-  - croc-cli/bin/croc-es5-cli.js install
-  - croc-cli/bin/croc-es5-cli.js build
-  - croc-cli/bin/croc-es5-cli.js test
+  - croc-cli/bin/croc-cli.js ls
+  - croc-cli/bin/croc-cli.js deps
+  - croc-cli/bin/croc-cli.js link
+  - croc-cli/bin/croc-cli.js install
+  - croc-cli/bin/croc-cli.js build
+  - croc-cli/bin/croc-cli.js test
