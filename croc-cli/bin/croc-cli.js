@@ -13,7 +13,7 @@ Options:
 `;
 
 const docopt = require('docopt').docopt;
-const args = docopt(doc, { version : '0.0.1' });
+const args = docopt(doc, { version : require('../package.json').version });
 
 import * as list from 'croc-list';
 import * as deps from 'croc-deps';
