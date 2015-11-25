@@ -1,6 +1,6 @@
 {
   "name": "croc-exec",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "dist/exec-es5.js",
   "jsnext:main": "exec.js",
@@ -12,7 +12,7 @@
   "author": "Pavel Fatrdla",
   "license": "Unlicense",
   "dependencies": {
-    "croc-deps": "0.0.1",
-    "shelljs": "^0.5.3"
+    "croc-deps": "~0.0.2",
+    "shelljs": "~0.5.3"
   }
 }

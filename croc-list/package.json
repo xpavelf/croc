@@ -1,6 +1,6 @@
 {
   "name": "croc-list",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "dist/list-es5.js",
   "jsnext:main": "list.js",
@@ -12,6 +12,6 @@
   "author": "Pavel Fatrdla",
   "license": "Unlicense",
   "dependencies": {
-    "shelljs": "^0.5.3"
+    "shelljs": "~0.5.3"
   }
 }

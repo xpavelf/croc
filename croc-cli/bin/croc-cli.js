@@ -31,11 +31,13 @@ const _ansiTrim = (str) => str.replace(r, '');
 const _print = res => console.log(res);
 
 const _printTable = ({ thead, tbody, options }) => {
-  const opts = Object.assign({ stringLength: s => _ansiTrim(s).length }, options);
+  options.stringLength = s => _ansiTrim(s).length;
   const thead_und = thead.map(n => chalk.underline(n));
-  const t = table([thead_und].concat(tbody), opts);
+  const t = table([thead_und].concat(tbody), options);
   _print(t); 
 };
+
+
 
 if (args.ls) {
   const pkgs = list.packages();
@@ -44,8 +46,10 @@ if (args.ls) {
   } else {
     _printTable({
       thead: ['Package', 'Version', 'Location'],
-      tbody: Array.from(pkgs)
-        .map(([, pkg]) => [chalk.yellow(pkg.name), pkg.version, pkg.file]),
+      tbody: Object.keys(pkgs).map(key => {
+        const pkg = pkgs[key];
+        return [chalk.yellow(pkg.name), pkg.version, pkg.file];
+      }),
       options: { align: ['l', 'r', 'l'] }
     });
   }

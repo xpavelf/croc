@@ -16,11 +16,12 @@ export function packages() {
   const pkgs = shell
     .find(cwd)
     .filter(f => f.endsWith('package.json'))
-    .filter(f => ignored.every(ifile => !f.includes(ifile)))
+    .filter(f => ignored.every(ifile => f.indexOf(ifile) === -1))
     .reduce((sum, f) => {
       const info = require(f);
-      return sum.set(info.name, { name: info.name, version: info.version, file: f });
-    }, new Map());
+      sum[info.name] = { name: info.name, version: info.version, file: f };
+      return sum;
+    }, {});
   
   return pkgs;
 };

@@ -1,6 +1,6 @@
 {
   "name": "croc-link",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "dist/link-es5.js",
   "jsnext:main": "link.js",
@@ -12,8 +12,8 @@
   "author": "Pavel Fatrdla",
   "license": "Unlicense",
   "dependencies": {
-    "croc-deps": "0.0.1",
-    "croc-list": "0.0.1",
-    "shelljs": "^0.5.3"
+    "croc-deps": "~0.0.2",
+    "croc-list": "~0.0.2",
+    "shelljs": "~0.5.3"
   }
 }

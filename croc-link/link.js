@@ -12,7 +12,7 @@ export function link({ lenient }) {
       const [dName] = dep.split('#');
         const linkPath = path.join(path.dirname(pkgjson), 'node_modules');
         const link = path.join(linkPath, dName);
-        const targetPath = path.dirname(pkgs.get(dName).file);
+        const targetPath = path.dirname(pkgs[dName].file);
         shelljs.mkdir('-p', linkPath);
         shelljs.ln('-sf', targetPath, link);
     });

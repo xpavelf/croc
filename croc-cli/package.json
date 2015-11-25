@@ -1,6 +1,6 @@
 {
   "name": "croc",
-  "version": "0.0.5",
+  "version": "0.0.7",
   "description": "monolithic repository manager",
   "bin": {
     "crocx": "./bin/croc-cli.js",
@@ -25,13 +25,13 @@
   },
   "homepage": "https://github.com/xpavelf/croc#readme",
   "dependencies": {
-    "chalk": "^1.1.1",
-    "croc-deps": "0.0.1",
-    "croc-exec": "0.0.1",
-    "croc-link": "0.0.1",
-    "croc-list": "0.0.1",
-    "docopt": "^0.6.2",
-    "es6-shim": "^0.33.13",
-    "text-table": "^0.2.0"
+    "chalk": "~1.1.1",
+    "croc-deps": "~0.0.2",
+    "croc-exec": "~0.0.2",
+    "croc-link": "~0.0.2",
+    "croc-list": "~0.0.2",
+    "docopt": "~0.6.2",
+    "es6-shim": "~0.33.13",
+    "text-table": "~0.2.0"
   }
 }

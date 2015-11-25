@@ -6,14 +6,15 @@ export function order({lenient}) {
   const graph = new graphlib.Graph();
   const packages = list.packages();
 
-  packages.forEach((pkg) => {
+  Object.keys(packages).forEach((key) => {
+    const pkg = packages[key];
     const info = require(pkg.file);
     const pkgDeps = info.dependencies || {};
     graph.setNode(pkg.name);
     
     Object.keys(pkgDeps)
-      .filter(dName => packages.has(dName))
-      .filter(dName => lenient || semver.satisfies(packages.get(dName).version, pkgDeps[dName]))
+      .filter(dName => packages[dName])
+      .filter(dName => lenient || semver.satisfies(packages[dName].version, pkgDeps[dName]))
       .forEach(dName => graph.setEdge(pkg.name, dName, pkgDeps[dName]));
   });
 
@@ -21,9 +22,9 @@ export function order({lenient}) {
     .reverse()
     .map(pName => [
       pName,
-      packages.get(pName).version,
+      packages[pName].version,
       graph.successors(pName).map(dName => dName + '#' + graph.edge(pName, dName)),
-      packages.get(pName).file
+      packages[pName].file
     ]);
 };
 
