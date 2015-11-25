@@ -31,7 +31,6 @@
     "croc-link": "~0.0.2",
     "croc-list": "~0.0.2",
     "docopt": "~0.6.2",
-    "es6-shim": "~0.33.13",
     "text-table": "~0.2.0"
   }
 }
