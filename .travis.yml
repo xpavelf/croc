@@ -4,13 +4,7 @@ node_js:
   - "0.12"
 install: 
   - npm i -g eslint croc
-before_script:
-  - croc link
-  - croc install
 script:
-  - croc build
-  - croc test
-after_success:
   - croc-cli/bin/croc-cli.js ls
   - croc-cli/bin/croc-cli.js deps
   - croc-cli/bin/croc-cli.js link
