@@ -6,7 +6,7 @@
     "croc": "./bin/croc-cli.js"
   },
   "scripts": {
-    "test": "echo \"No test is available.\"",
+    "test": "standard",
     "build": "echo \"No need for build.\""
   },
   "repository": {
