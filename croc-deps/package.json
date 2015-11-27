@@ -10,8 +10,8 @@
   "author": "Pavel Fatrdla",
   "license": "Unlicense",
   "dependencies": {
+    "croc-dag": "~0.0.1",
     "croc-list": "~0.0.2",
-    "graphlib": "~1.0.7",
     "object-assign": "^4.0.1",
     "semver": "~5.0.3"
   },
