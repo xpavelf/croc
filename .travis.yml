@@ -5,6 +5,8 @@ node_js:
 install: 
   - npm i -g eslint croc
 script:
+  - croc link
+  - croc install
   - croc-cli/bin/croc-cli.js ls
   - croc-cli/bin/croc-cli.js deps
   - croc-cli/bin/croc-cli.js link
