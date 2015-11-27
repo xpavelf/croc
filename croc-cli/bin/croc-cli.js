@@ -3,7 +3,7 @@ var doc = ''+
 'Usage:                                                                                \n'+
 '  croc ls [--json]                                                                    \n'+
 '  croc deps [--lenient --json]                                                        \n'+
-'  croc ( link [--lenient] | install | test | build )                                  \n'+
+'  croc ( link [--lenient] | install | test | build | publish )                        \n'+
 '                                                                                      \n'+
 'Options:                                                                              \n'+
 '  -h --help     Show this screen.                                                     \n'+
@@ -79,9 +79,11 @@ if (args.ls) {
 } else if (args.link) {
   link.link({ lenient: args['--lenient'] });
 } else if (args.test) {
-  exec.exec({ cmd: 'npm test'});
+  exec.exec('npm test');
 } else if (args.build) {
-  exec.exec({ cmd: 'npm run build' });
+  exec.exec('npm run build');
 } else if (args.install) {
-  exec.exec({ cmd: 'npm install' });
+  exec.exec('npm install');
+} else if (args.publish) {
+  exec.exec('npm show %PKG_NAME% versions --json | grep -q \\"%PKG_VERSION%\\" || npm publish');
 }

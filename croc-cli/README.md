@@ -18,7 +18,7 @@ Well croc goes away from npm standard approach having packages in separated repo
 Usage:
   croc ls [--json]
   croc deps [--lenient --json]
-  croc ( link [--lenient] | install | test | build )
+  croc ( link [--lenient] | install | test | build | publish )
 
 Options:
   -h --help     Show this screen.
