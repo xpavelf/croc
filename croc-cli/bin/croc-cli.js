@@ -3,7 +3,12 @@ var doc = ''+
 'Usage:                                                                                \n'+
 '  croc ls [--json]                                                                    \n'+
 '  croc deps [--lenient --json]                                                        \n'+
-'  croc ( link [--lenient] | install | test | build | publish )                        \n'+
+'  croc link [--lenient]                                                               \n'+
+'  croc install                                                                        \n'+
+'  croc test                                                                           \n'+
+'  croc build                                                                          \n'+
+'  croc publish                                                                        \n'+
+'  croc exec CMD                                                                       \n'+
 '                                                                                      \n'+
 'Options:                                                                              \n'+
 '  -h --help     Show this screen.                                                     \n'+
@@ -86,4 +91,6 @@ if (args.ls) {
   exec.exec('npm install');
 } else if (args.publish) {
   exec.exec('npm show %PKG_NAME% versions --json | grep -q \\"%PKG_VERSION%\\" || npm publish');
+} else if (args.exec) {
+  exec.exec(args.CMD);
 }
