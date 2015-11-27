@@ -6,7 +6,9 @@ var _ignoreFileName = '.crocignore';
 var _getIgnored = function() {
   var ipath = path.join(cwd, _ignoreFileName);
   if (shell.test('-e', ipath)) {
-    return shell.cat(ipath).split('\n');
+    return shell.cat(ipath)
+      .split('\n')
+      .filter(function(str) { return str.trim() !== ''; });
   }
   return [];
 };

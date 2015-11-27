@@ -1,6 +1,7 @@
 var graphlib = require('graphlib');
 var semver = require('semver');
 var list = require('croc-list');
+var objectAssign = require('object-assign');
 
 exports.order = function(options) {
   var opts = options || {};
@@ -10,7 +11,7 @@ exports.order = function(options) {
   Object.keys(packages).forEach(function(key) {
     var pkg = packages[key];
     var info = require(pkg.file);
-    var pkgDeps = info.dependencies || {};
+    var pkgDeps = objectAssign({}, info.devDependencies, info.dependencies);
     graph.setNode(pkg.name);
     
     Object.keys(pkgDeps)

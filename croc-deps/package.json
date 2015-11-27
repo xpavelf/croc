@@ -1,6 +1,6 @@
 {
   "name": "croc-deps",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "",
   "main": "deps.js",
   "scripts": {
@@ -12,6 +12,7 @@
   "dependencies": {
     "croc-list": "~0.0.2",
     "graphlib": "~1.0.7",
+    "object-assign": "^4.0.1",
     "semver": "~5.0.3"
   }
 }
