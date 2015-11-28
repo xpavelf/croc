@@ -15,19 +15,19 @@ Well croc goes away from npm standard approach having packages in separated repo
 
 
 ```
-Usage:                                                                                
-  croc ls [--json]                                                                    
-  croc deps [--lenient --json]                                                        
-  croc link [--lenient]                                                               
-  croc install                                                                        
-  croc test                                                                           
-  croc build                                                                          
-  croc publish                                                                        
-  croc exec CMD
-                                                                                      
-Options:                                                                              
-  -h --help     Show this screen.                                                     
-  --version     Show version.                                                         
-  --json        Show information in JSON format.                                      
-  --lenient     Ignore that project dependency doesnt satisfies version (semver)
+ Usage:
+   croc ls [--json]
+   croc deps [--strict --json]
+   croc link [--strict]
+   croc install
+   croc test
+   croc build
+   croc publish
+   croc exec CMD
+
+ Options:
+   -h --help     Show this screen.
+   --version     Show version.
+   --json        Show information in JSON format.
+   --strict      Dependencies must statisfy version (semver)
 ```
