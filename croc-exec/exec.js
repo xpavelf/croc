@@ -2,16 +2,17 @@ var deps = require('croc-deps')
 var path = require('path')
 var shelljs = require('shelljs')
 
-exports.exec = function (command, latient) {
-  var order = deps.order(latient || false)
-  order
-    .forEach(function (pkgInfo) {
-      var cmd = command
-        .replace('%PKG_NAME%', pkgInfo[0])
-        .replace('%PKG_VERSION%', pkgInfo[1])
+exports.exec = function (command) {
+  var order = deps.order()
+  var packages = deps.packages()
+  order.forEach(function (name) {
+    var pkg = packages.node(name)
+    var cmd = command
+      .replace('%PKG_NAME%', pkg.name)
+      .replace('%PKG_VERSION%', pkg.version)
 
-      shelljs.cd(path.dirname(pkgInfo[3]))
-      console.error(cmd)
-      shelljs.exec(cmd)
-    })
+    shelljs.cd(path.dirname(pkg._file))
+    console.error(cmd)
+    shelljs.exec(cmd)
+  })
 }

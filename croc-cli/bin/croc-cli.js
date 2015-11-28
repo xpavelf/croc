@@ -19,7 +19,6 @@ var doc = '' +
 var docopt = require('docopt').docopt
 var args = docopt(doc, { version: require('../package.json').version })
 
-var list = require('croc-list')
 var deps = require('croc-deps')
 var link = require('croc-link')
 var exec = require('croc-exec')
@@ -32,50 +31,70 @@ var r = new RegExp('\x1b(?:\\[(?:\\d+[ABCDEFGJKSTm]|\\d+;\\d+[Hfm]|' +
 
 var _ansiTrim = function (str) { return str.replace(r, '') }
 
-var _print = function (res) { console.log(res) }
+var _printPackages = function (res) {
+  console.log(JSON.stringify(pkgs.nodes().map(function (name) {
+    var pkg = pkgs.node(name)
+    return {name: pkg.name, version: pkg.version, file: pkg._file}
+  }), null, 2))
+}
+
+var _printDependencies = function (res) {
+  console.log(JSON.stringify(pkgs.nodes().map(function (name) {
+    var pkg = pkgs.node(name)
+    var deps = pkgs.out(name).map(function (dep) {
+      return {name: dep, version: pkgs.edge(name, dep)}
+    })
+    return {name: pkg.name, version: pkg.version, dependencies: deps}
+  }), null, 2))
+}
 
 var _printTable = function (tableObj) {
   var tbl = tableObj || {}
   tbl.options.stringLength = function (s) { return _ansiTrim(s).length }
   var thead_und = tbl.thead.map(function (n) { return chalk.underline(n) })
   var t = table([thead_und].concat(tbl.tbody), tbl.options)
-  _print(t)
+  console.log(t)
 }
 
+var _printPacakgesTable = function (dag) {
+  _printTable({
+    thead: ['Package', 'Version', 'Location'],
+    tbody: dag.nodes().map(function (key) {
+      var pkg = dag.node(key)
+      return [chalk.yellow(pkg.name), pkg.version, pkg._file]
+    }),
+    options: { align: ['l', 'r', 'l'] }
+  })
+}
+
+var _printDependenciesTable = function (dag) {
+  _printTable({
+    thead: ['Package', 'Version', 'Depends on'],
+    tbody: dag.nodes().map(function (key) {
+      var pkg = dag.node(key)
+      var name = pkg.name
+      var ver = pkg.version
+      var depon = dag.out(name).map(function (dep) {
+        return dep + chalk.cyan('@' + dag.edge(name, dep))
+      })
+      return [chalk.yellow(name), ver, depon]
+    }),
+    options: { align: ['l', 'r', 'l'] }
+  })
+}
+
+var pkgs = deps.packages()
 if (args.ls) {
-  var pkgs = list.packages()
   if (args['--json']) {
-    _print(pkgs)
+    _printPackages()
   } else {
-    _printTable({
-      thead: ['Package', 'Version', 'Location'],
-      tbody: Object.keys(pkgs).map(function (key) {
-        var pkg = pkgs[key]
-        return [chalk.yellow(pkg.name), pkg.version, pkg.file]
-      }),
-      options: { align: ['l', 'r', 'l'] }
-    })
+    _printPacakgesTable(pkgs)
   }
 } else if (args.deps) {
-  var order = deps.order({lenient: args['--lenient']})
   if (args['--json']) {
-    _print(order)
+    _printDependencies(pkgs)
   } else {
-    var depMap = function (dep) {
-      var d = dep.split('#')
-      return d[0] + chalk.gray('#' + d[1])
-    }
-
-    _printTable({
-      thead: ['Package', 'Version', 'Depends on'],
-      tbody: order.map(function (pkgInfo) {
-        var pkg = pkgInfo[0]
-        var ver = pkgInfo[1]
-        var depon = pkgInfo[2]
-        return [chalk.yellow(pkg), ver, depon.map(depMap)]
-      }),
-      options: { align: ['l', 'r', 'l'] }
-    })
+    _printDependenciesTable(pkgs)
   }
 } else if (args.link) {
   link.link({lenient: args['--lenient']})

@@ -1,10 +1,10 @@
 module.exports = function (dag, cb) {
   var counts = dag
-        .nodes()
-        .reduce(function (sum, v) {
-          sum[v] = dag.out(v).length
-          return sum
-        }, {})
+    .nodes()
+    .reduce(function (sum, v) {
+      sum[v] = dag.out(v).length
+      return sum
+    }, {})
 
   function visit (v) {
     cb(v, function () {

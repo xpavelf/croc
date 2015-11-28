@@ -3,36 +3,31 @@ var semver = require('semver')
 var list = require('croc-list')
 var objectAssign = require('object-assign')
 
-exports.order = function () {
+exports.packages = function packages () {
   var graph = new dag.DAG()
-  var packages = list.packages()
+  var pkgs = list.packages()
 
-  Object.keys(packages).forEach(function (key) {
-    var pkg = packages[key]
+  Object.keys(pkgs).forEach(function (key) {
+    var pkg = pkgs[key]
     var info = require(pkg.file)
+    info._file = pkg.file // _prefix is reserved for this by NPM
     var pkgDeps = objectAssign({}, info.devDependencies, info.dependencies)
-    graph.addNode(pkg.name)
+    graph.addNode(pkg.name, info) // get info by `graph.node(pkg.name)`
 
     Object.keys(pkgDeps)
       .filter(function (dName) {
-        return packages[dName]
+        return pkgs[dName]
       })
       .filter(function (dName) {
-        return semver.satisfies(packages[dName].version, pkgDeps[dName])
+        return semver.satisfies(pkgs[dName].version, pkgDeps[dName])
       })
       .forEach(function (dName) {
         graph.addEdge(pkg.name, dName, pkgDeps[dName])
       })
   })
+  return graph
+}
 
-  return dag.alg.topsort(graph)
-    .reverse()
-    .map(function (pName) {
-      return [
-        pName,
-        packages[pName].version,
-        graph.out(pName).map(function (dName) { return dName + '#' + graph.edge(pName, dName) }),
-        packages[pName].file
-      ]
-    })
+exports.order = function () {
+  return dag.alg.topsort(exports.packages()).reverse()
 }

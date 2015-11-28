@@ -24,7 +24,6 @@
     "croc-deps": "~0.0.2",
     "croc-exec": "~0.0.2",
     "croc-link": "~0.0.2",
-    "croc-list": "~0.0.2",
     "docopt": "~0.6.2",
     "text-table": "~0.2.0"
   }

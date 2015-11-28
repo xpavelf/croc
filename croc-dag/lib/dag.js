@@ -9,24 +9,24 @@ DAG.prototype.nodes = function () {
 }
 
 DAG.prototype.out = function (v) {
-  return Object.keys(this._out[v])
+  return Object.keys(this._out[v] || {})
 }
 
 DAG.prototype.in = function (v) {
-  return Object.keys(this._in[v])
+  return Object.keys(this._in[v] || {})
 }
 
 DAG.prototype.sources = function () {
   var self = this
   return this.nodes().filter(function (v) {
-    return self._in[v].length === 0
+    return self.in(v).length === 0
   })
 }
 
 DAG.prototype.sinks = function () {
   var self = this
   return this.nodes().filter(function (v) {
-    return self._out[v] && self.out(v).length === 0
+    return self.out(v).length === 0
   })
 }
 
