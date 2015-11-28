@@ -3,7 +3,7 @@ var semver = require('semver')
 var list = require('croc-list')
 var objectAssign = require('object-assign')
 
-exports.packages = function packages () {
+exports.packages = function packages (options) {
   var graph = new dag.DAG()
   var pkgs = list.packages()
 
@@ -19,7 +19,7 @@ exports.packages = function packages () {
         return pkgs[dName]
       })
       .filter(function (dName) {
-        return semver.satisfies(pkgs[dName].version, pkgDeps[dName])
+        return !options.strict || semver.satisfies(pkgs[dName].version, pkgDeps[dName])
       })
       .forEach(function (dName) {
         graph.addEdge(pkg.name, dName, pkgDeps[dName])

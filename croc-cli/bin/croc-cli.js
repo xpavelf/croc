@@ -2,8 +2,8 @@
 var doc = '' +
   'Usage:                                                                                \n' +
   '  croc ls [--json]                                                                    \n' +
-  '  croc deps [--lenient --json]                                                        \n' +
-  '  croc link [--lenient]                                                               \n' +
+  '  croc deps [--strict --json]                                                         \n' +
+  '  croc link [--strict]                                                                \n' +
   '  croc install                                                                        \n' +
   '  croc test                                                                           \n' +
   '  croc build                                                                          \n' +
@@ -14,7 +14,7 @@ var doc = '' +
   '  -h --help     Show this screen.                                                     \n' +
   '  --version     Show version.                                                         \n' +
   '  --json        Show information in JSON format.                                      \n' +
-  '  --lenient     Ignore that project dependency doesnt satisfies version (semver)      \n'
+  '  --strict      Dependencies must statisfy version (semver)                           \n'
 
 var docopt = require('docopt').docopt
 var args = docopt(doc, { version: require('../package.json').version })
@@ -24,7 +24,7 @@ var link = require('croc-link')
 var exec = require('croc-exec')
 var printer = require('../lib/dag-printer.js')
 
-var pkgs = deps.packages()
+var pkgs = deps.packages({strict: args['--strict']})
 if (args.ls) {
   if (args['--json']) {
     printer.packages(pkgs)
@@ -38,7 +38,7 @@ if (args.ls) {
     printer.dependenciesTable(pkgs)
   }
 } else if (args.link) {
-  link.link({lenient: args['--lenient']})
+  link.link(pkgs)
 } else if (args.test) {
   exec.exec('npm test')
 } else if (args.build) {
