@@ -3,7 +3,8 @@ var semver = require('semver')
 var list = require('croc-list')
 var objectAssign = require('object-assign')
 
-exports.packages = function packages (options) {
+exports.packages = function packages (opts) {
+  var options = opts || {}
   var graph = new dag.DAG()
   var pkgs = list.packages()
 
