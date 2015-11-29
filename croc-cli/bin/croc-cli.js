@@ -12,10 +12,12 @@ var doc = '' +
   '  croc pexec CMD [<package>...]                                                       \n' +
   '                                                                                      \n' +
   'Options:                                                                              \n' +
-  '  -h --help     Show this screen.                                                     \n' +
-  '  --version     Show version.                                                         \n' +
-  '  --json        Show information in JSON format.                                      \n' +
-  '  --strict      Dependencies must statisfy version (semver)                           \n'
+  '  -h --help              Show this screen.                                            \n' +
+  '  --version              Show version.                                                \n' +
+  '  --json                 Show information in JSON format.                             \n' +
+  '  -c, --changed          Show only projects that is changed.                          \n' +
+  '  -s, --since=SHA        Commit to diff against [default: master]                     \n' +
+  '  --strict               Dependencies must statisfy version (semver)                  \n'
 
 var docopt = require('docopt').docopt
 var args = docopt(doc, { version: require('../package.json').version })
@@ -25,7 +27,10 @@ var link = require('croc-link')
 var exec = require('croc-exec')
 var printer = require('../lib/dag-printer.js')
 
-var pkgs = deps.packages({strict: args['--strict'], packages: args['<package>']})
+var since = args['--changed'] ? args['--since'] : undefined
+var pkgs = deps.packages({strict: args['--strict'],
+                          packages: args['<package>'],
+                          since: since})
 if (args.ls) {
   if (args['--json']) {
     printer.packages(pkgs)

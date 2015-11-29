@@ -10,7 +10,7 @@ var _includePackage = function (name, packages) {
 exports.packages = function packages (opts) {
   var options = opts || {}
   var graph = new dag.DAG()
-  var pkgs = list.packages()
+  var pkgs = list.packages(options.since)
 
   Object.keys(pkgs)
     .filter(function (key) {
