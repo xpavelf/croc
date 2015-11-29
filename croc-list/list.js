@@ -55,7 +55,6 @@ function _getProjects () {
 }
 
 exports.packages = function (since) {
-  console.log(since)
   var changed = _getChanged(since)
   return _getProjects()
     .filter(function (f) {
