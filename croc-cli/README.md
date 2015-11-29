@@ -16,8 +16,8 @@ Well croc goes away from npm standard approach having packages in separated repo
 
 ```
  Usage:
-   croc ls [--json]
-   croc deps [--strict --json]
+   croc ls [options] [<package>...]
+   croc deps [options] [<package>...]
    croc link [--strict]
    croc install
    croc test
