@@ -10,7 +10,11 @@
   "author": "Pavel Fatrdla",
   "license": "Unlicense",
   "dependencies": {
+    "chalk": "~1.1.1",
     "croc-deps": "~0.0.2",
     "shelljs": "~0.5.3"
+  },
+  "devDependencies": {
+    "standard": "^5.4.1"
   }
 }
