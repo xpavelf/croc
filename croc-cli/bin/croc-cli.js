@@ -9,6 +9,7 @@ var doc = '' +
   '  croc build                                                                          \n' +
   '  croc publish                                                                        \n' +
   '  croc exec CMD [<package>...]                                                        \n' +
+  '  croc pexec CMD [<package>...]                                                       \n' +
   '                                                                                      \n' +
   'Options:                                                                              \n' +
   '  -h --help     Show this screen.                                                     \n' +
@@ -49,4 +50,6 @@ if (args.ls) {
   exec.exec(pkgs, 'npm show %PKG_NAME% versions --json | grep -q \\"%PKG_VERSION%\\" || npm publish')
 } else if (args.exec) {
   exec.exec(pkgs, args.CMD)
+} else if (args.pexec) {
+  exec.pexec(pkgs, args.CMD)
 }
