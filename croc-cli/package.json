@@ -23,6 +23,7 @@
     "chalk": "~1.1.1",
     "croc-deps": "~0.0.2",
     "croc-exec": "~0.0.2",
+    "croc-git": "~0.0.1",
     "croc-link": "~0.0.2",
     "docopt": "~0.6.2",
     "text-table": "~0.2.0"

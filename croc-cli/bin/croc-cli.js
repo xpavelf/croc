@@ -25,12 +25,14 @@ var args = docopt(doc, { version: require('../package.json').version })
 var deps = require('croc-deps')
 var link = require('croc-link')
 var exec = require('croc-exec')
+var git = require('croc-git')
 var printer = require('../lib/dag-printer.js')
 
-var since = args['--changed'] ? args['--since'] : undefined
 var pkgs = deps.packages({strict: args['--strict'],
-                          packages: args['<package>'],
-                          since: since})
+                          packages: args['<package>']})
+if (args['--changed']) {
+  pkgs = git.changed(pkgs, args['--since'])
+}
 if (args.ls) {
   if (args['--json']) {
     printer.packages(pkgs)

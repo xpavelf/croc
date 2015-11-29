@@ -18,16 +18,6 @@ var _getIgnored = function () {
   return []
 }
 
-function _getChanged (sha) {
-  return shell
-    .exec('git diff --name-only ' + sha, {silent: true})
-    .output.split('\n')
-    .filter(_notEmpty)
-    .map(function (f) {
-      return path.join(cwd, f)
-    })
-}
-
 function _getProjects () {
   var ignored = _getIgnored()
   var projects = []
@@ -55,15 +45,7 @@ function _getProjects () {
 }
 
 exports.packages = function (since) {
-  var changed = _getChanged(since)
   return _getProjects()
-    .filter(function (f) {
-      var dir = path.dirname(f)
-      var changedInProject = changed.filter(function (changed) {
-        return changed.startsWith(dir)
-      })
-      return !since || changedInProject.length !== 0
-    })
     .reduce(function (sum, f) {
       var info = require(f)
       sum[info.name] = { name: info.name, version: info.version, file: f }

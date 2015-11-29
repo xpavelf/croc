@@ -72,4 +72,29 @@ DAG.prototype.addEdge = function (v, w, label) {
   this._out[v][w] = label
 }
 
+DAG.prototype.filter = function (filterFunction) {
+  var self = this
+  var newDAG = new DAG()
+  this.nodes().forEach(function (name) {
+    var pkg = self.node(name)
+    if (filterFunction(name)) {
+      var clone = JSON.parse(JSON.stringify(pkg))
+      newDAG.addNode(clone.name, clone)
+    }
+  })
+  newDAG.nodes().forEach(function (name) {
+    self.in(name).forEach(function (v) {
+      if (newDAG.hasNode(v)) {
+        newDAG.addEdge(v, name, self.edge(v, name))
+      }
+    })
+    self.out(name).forEach(function (w) {
+      if (newDAG.hasNode(w)) {
+        newDAG.addEdge(name, w, self.edge(name, w))
+      }
+    })
+  })
+  return newDAG
+}
+
 module.exports = DAG
