@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 var doc = '' +
   'Usage:                                                                                \n' +
-  '  croc ls [--json]                                                                    \n' +
-  '  croc deps [--strict --json]                                                         \n' +
+  '  croc ls [options] [<package>...]                                                    \n' +
+  '  croc deps [options] [<package>...]                                                  \n' +
   '  croc link [--strict]                                                                \n' +
   '  croc install                                                                        \n' +
   '  croc test                                                                           \n' +
@@ -24,7 +24,7 @@ var link = require('croc-link')
 var exec = require('croc-exec')
 var printer = require('../lib/dag-printer.js')
 
-var pkgs = deps.packages({strict: args['--strict']})
+var pkgs = deps.packages({strict: args['--strict'], packages: args['<package>']})
 if (args.ls) {
   if (args['--json']) {
     printer.packages(pkgs)
