@@ -12,5 +12,8 @@
   "dependencies": {
     "croc-deps": "~0.0.2",
     "shelljs": "~0.5.3"
+  },
+  "devDependencies": {
+    "standard": "^5.4.1"
   }
 }

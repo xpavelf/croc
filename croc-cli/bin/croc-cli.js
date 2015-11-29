@@ -8,7 +8,7 @@ var doc = '' +
   '  croc test                                                                           \n' +
   '  croc build                                                                          \n' +
   '  croc publish                                                                        \n' +
-  '  croc exec CMD                                                                       \n' +
+  '  croc exec CMD [<package>...]                                                        \n' +
   '                                                                                      \n' +
   'Options:                                                                              \n' +
   '  -h --help     Show this screen.                                                     \n' +
@@ -40,13 +40,13 @@ if (args.ls) {
 } else if (args.link) {
   link.link(pkgs)
 } else if (args.test) {
-  exec.exec('npm test')
+  exec.exec(pkgs, 'npm test')
 } else if (args.build) {
-  exec.exec('npm run build')
+  exec.exec(pkgs, 'npm run build')
 } else if (args.install) {
-  exec.exec('npm install')
+  exec.exec(pkgs, 'npm install')
 } else if (args.publish) {
-  exec.exec('npm show %PKG_NAME% versions --json | grep -q \\"%PKG_VERSION%\\" || npm publish')
+  exec.exec(pkgs, 'npm show %PKG_NAME% versions --json | grep -q \\"%PKG_VERSION%\\" || npm publish')
 } else if (args.exec) {
-  exec.exec(args.CMD)
+  exec.exec(pkgs, args.CMD)
 }

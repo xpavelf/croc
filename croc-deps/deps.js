@@ -40,6 +40,6 @@ exports.packages = function packages (opts) {
   return graph
 }
 
-exports.order = function () {
-  return dag.alg.topsort(exports.packages()).reverse()
+exports.order = function (packages) {
+  return dag.alg.topsort(packages).reverse()
 }

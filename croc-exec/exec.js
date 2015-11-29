@@ -3,9 +3,8 @@ var path = require('path')
 var shelljs = require('shelljs')
 var chalk = require('chalk')
 
-exports.exec = function (command) {
-  var order = deps.order()
-  var packages = deps.packages()
+exports.exec = function (packages, command) {
+  var order = deps.order(packages)
   order.forEach(function (name) {
     var pkg = packages.node(name)
     var cmd = command

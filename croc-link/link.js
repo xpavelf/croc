@@ -2,9 +2,8 @@ var deps = require('croc-deps')
 var path = require('path')
 var shelljs = require('shelljs')
 
-exports.link = function () {
-  var pkgs = deps.packages()
-  var order = deps.order()
+exports.link = function (pkgs) {
+  var order = deps.order(pkgs)
 
   order.forEach(function (name) {
     var pkg = pkgs.node(name)
