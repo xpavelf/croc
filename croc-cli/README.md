@@ -3,6 +3,7 @@ monolithic repository manager
 
 [![NPM version](https://img.shields.io/npm/v/croc.svg)](https://npmjs.org/package/croc)
 [![Build Status](https://travis-ci.org/xpavelf/croc.svg?branch=master)](https://travis-ci.org/xpavelf/croc)
+[![NPM License](https://img.shields.io/npm/l/croc.svg)](https://npmjs.org/package/croc)
 
 ## What does it mean?
 
