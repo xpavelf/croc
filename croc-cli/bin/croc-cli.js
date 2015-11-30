@@ -48,13 +48,13 @@ if (args.ls) {
 } else if (args.link) {
   link.link(pkgs)
 } else if (args.test) {
-  exec.exec(pkgs, 'npm test')
+  exec.pexec(pkgs, 'npm test')
 } else if (args.build) {
-  exec.exec(pkgs, 'npm run build')
+  exec.pexec(pkgs, 'npm run build')
 } else if (args.install) {
-  exec.exec(pkgs, 'npm install')
+  exec.pexec(pkgs, 'npm install')
 } else if (args.publish) {
-  exec.exec(pkgs, 'npm show %PKG_NAME% versions --json | grep -q \\"%PKG_VERSION%\\" || npm publish')
+  exec.pexec(pkgs, 'npm show %PKG_NAME% versions --json | grep -q \\"%PKG_VERSION%\\" || npm publish')
 } else if (args.exec) {
   exec.exec(pkgs, args.CMD)
 } else if (args.pexec) {

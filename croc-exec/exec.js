@@ -37,10 +37,10 @@ exports.pexec = function (packages, command) {
     console.error(prefixCmd(pkg.name, cmd))
 
     var child = shelljs.exec(cmd, {async: true, silent: true})
-    child.stdout.on('data', function(data) {
+    child.stdout.on('data', function (data) {
       data.split('\n')
         .map(prefixOut.bind(null, pkg.name))
-        .forEach(function(line) {
+        .forEach(function (line) {
           console.log(line)
         })
     })
