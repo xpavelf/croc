@@ -3,7 +3,7 @@ node_js:
   - "4"
   - "0.12"
 install: 
-  - npm i -g eslint croc
+  - npm i -g croc
 script:
   - croc link
   - croc install
