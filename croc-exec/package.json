@@ -8,7 +8,7 @@
     "build": "echo \"No need for build.\""
   },
   "author": "Pavel Fatrdla",
-  "license": "Unlicense",
+  "license": "GPL-3.0",
   "dependencies": {
     "chalk": "~1.1.1",
     "croc-dag": "~0.0.1",

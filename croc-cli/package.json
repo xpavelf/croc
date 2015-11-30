@@ -14,7 +14,7 @@
     "url": "git+https://github.com/xpavelf/croc.git"
   },
   "author": "Pavel Fatrdla",
-  "license": "Unlicense",
+  "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/xpavelf/croc/issues"
   },
