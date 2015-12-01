@@ -6,7 +6,7 @@ install:
   - npm i -g croc
 script:
   - croc link
-  - croc install
+  - croc pexec "npm install --cache-min 300"
   - croc-cli/bin/croc-cli.js ls
   - croc-cli/bin/croc-cli.js deps
   - croc-cli/bin/croc-cli.js link
