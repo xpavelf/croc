@@ -38,11 +38,14 @@ exports.pexec = function (packages, command) {
 
     var child = shelljs.exec(cmd, {async: true, silent: true})
     child.stdout.on('data', function (data) {
-      data.split('\n')
-        .map(prefixOut.bind(null, pkg.name))
-        .forEach(function (line) {
-          console.log(line)
-        })
+      var filtered = data.replace('\r', '')
+      if (filtered) {
+        filtered.trim().split('\n')
+          .map(prefixOut.bind(null, pkg.name))
+          .forEach(function (line) {
+            console.log(line)
+          })
+      }
     })
     child.on('exit', callback)
   })
