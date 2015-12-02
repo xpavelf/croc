@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 var doc = '' +
   'Usage:                                                                                \n' +
-  '  croc ls [options] [<package>...]                                                    \n' +
-  '  croc deps [options] [<package>...]                                                  \n' +
+  '  croc ls [-c -s --json] [<package>...]                                               \n' +
+  '  croc deps [-c -s --json] [<package>...]                                             \n' +
   '  croc link [--strict]                                                                \n' +
   '  croc install                                                                        \n' +
   '  croc test                                                                           \n' +
