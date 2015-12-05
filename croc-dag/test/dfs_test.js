@@ -12,9 +12,9 @@ describe('Depth First Search', function () {
 
     var result = dfs(dag, 'a')
 
-    assert.ok(result[0] = 'a', 'a is first')
-    assert.ok(result[1] = 'b', 'b is second')
-    assert.ok(result[2] = 'c', 'c is last')
+    assert.equal(result[0], 'a', 'a is first')
+    assert.equal(result[1], 'b', 'b is second')
+    assert.equal(result[2], 'c', 'c is last')
   })
 })
 
@@ -24,10 +24,10 @@ describe('Reverse Depth First Search', function () {
     dag.addEdge('a', 'b')
     dag.addEdge('b', 'c')
 
-    var result = reverseDfs(dag, 'a')
+    var result = reverseDfs(dag, 'c')
 
-    assert.ok(result[2] = 'c', 'c is first')
-    assert.ok(result[1] = 'b', 'b is second')
-    assert.ok(result[0] = 'a', 'a is last')
+    assert.equal(result[0], 'c', 'c is first')
+    assert.equal(result[1], 'b', 'b is second')
+    assert.equal(result[2], 'a', 'a is last')
   })
 })
