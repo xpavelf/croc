@@ -3,19 +3,11 @@ var semver = require('semver')
 var list = require('croc-list')
 var objectAssign = require('object-assign')
 
-var _includePackage = function (name, packages) {
-  return packages.indexOf(name) >= 0 || packages.length === 0
-}
-
-exports.packages = function packages (opts) {
-  var options = opts || {}
+exports.packages = function packages (strict) {
   var graph = new dag.DAG()
-  var pkgs = list.packages(options.since)
+  var pkgs = list.packages()
 
   Object.keys(pkgs)
-    .filter(function (key) {
-      return _includePackage(key, options.packages)
-    })
     .forEach(function (key) {
       var pkg = pkgs[key]
       var info = require(pkg.file)
@@ -28,10 +20,7 @@ exports.packages = function packages (opts) {
           return pkgs[dName]
         })
         .filter(function (dName) {
-          return !options.strict || semver.satisfies(pkgs[dName].version, pkgDeps[dName])
-        })
-        .filter(function (dName) {
-          return _includePackage(dName, options.packages)
+          return !strict || semver.satisfies(pkgs[dName].version, pkgDeps[dName])
         })
         .forEach(function (dName) {
           graph.addEdge(pkg.name, dName, pkgDeps[dName])
@@ -42,4 +31,14 @@ exports.packages = function packages (opts) {
 
 exports.order = function (packages) {
   return dag.alg.topsort(packages).reverse()
+}
+
+exports.getPredecessors = function (graph, packages) {
+  var included = []
+  packages.forEach(function (name) {
+    dag.alg.reverseDfs(graph, name).forEach(function (name) {
+      included.push(name)
+    })
+  })
+  return included
 }

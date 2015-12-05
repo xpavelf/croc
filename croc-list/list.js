@@ -44,7 +44,7 @@ function _getProjects () {
   return projects
 }
 
-exports.packages = function (since) {
+exports.packages = function () {
   return _getProjects()
     .reduce(function (sum, f) {
       var info = require(f)

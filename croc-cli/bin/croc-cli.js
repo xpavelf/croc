@@ -1,23 +1,24 @@
 #!/usr/bin/env node
 var doc = '' +
   'Usage:                                                                                \n' +
-  '  croc ls [-c -s --json] [<package>...]                                               \n' +
-  '  croc deps [-c -s --json] [<package>...]                                             \n' +
+  '  croc ls [-c -s SHA] [-px] [--json] [<package>...]                                   \n' +
+  '  croc deps [-c -s SHA] [-px] [--json] [<package>...]                                 \n' +
   '  croc link [--strict]                                                                \n' +
   '  croc install                                                                        \n' +
   '  croc test                                                                           \n' +
   '  croc build                                                                          \n' +
   '  croc publish                                                                        \n' +
-  '  croc exec CMD [<package>...]                                                        \n' +
-  '  croc pexec CMD [<package>...]                                                       \n' +
+  '  croc [-cp] exec CMD [<package>...]                                                  \n' +
+  '  croc [-cp] pexec CMD [<package>...]                                                 \n' +
   '                                                                                      \n' +
   'Options:                                                                              \n' +
   '  -h --help              Show this screen.                                            \n' +
   '  --version              Show version.                                                \n' +
   '  --json                 Show information in JSON format.                             \n' +
+  '  -p, --predecessors     Include procets depending on the packages.                   \n' +
+  '  -x, --strict           Dependencies must statisfy version (semver)                  \n' +
   '  -c, --changed          Show only projects that is changed.                          \n' +
-  '  -s, --since=SHA        Commit to diff against [default: master]                     \n' +
-  '  --strict               Dependencies must statisfy version (semver)                  \n'
+  '  -s, --since=SHA        Commit to diff against [default: master]                     \n'
 
 var docopt = require('docopt').docopt
 var args = docopt(doc, { version: require('../package.json').version })
@@ -28,11 +29,23 @@ var exec = require('croc-exec')
 var git = require('croc-git')
 var printer = require('../lib/dag-printer.js')
 
-var pkgs = deps.packages({strict: args['--strict'],
-                          packages: args['<package>']})
-if (args['--changed']) {
-  pkgs = git.changed(pkgs, args['--since'])
+var pkgs = deps.packages(args['--strict'])
+var includePkgs
+if (args['<package>'].length > 0) {
+  includePkgs = args['<package>']
+} else {
+  includePkgs = pkgs.nodes()
 }
+if (args['--changed']) {
+  includePkgs = git.changed(pkgs, includePkgs, args['--since'])
+}
+if (args['--predecessors']) {
+  includePkgs = includePkgs.concat(deps.getPredecessors(pkgs, includePkgs))
+}
+pkgs = pkgs.filter(function (name) {
+  return includePkgs.indexOf(name) >= 0
+})
+
 if (args.ls) {
   if (args['--json']) {
     printer.packages(pkgs)

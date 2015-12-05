@@ -6,7 +6,7 @@ module.exports = function (dag, node) {
     visited[v] = true
     dag.in(v).forEach(function (w) {
       if (!visited[w]) {
-        dfs(w)
+        dfs(dag, w)
       }
     })
     result.push(v)

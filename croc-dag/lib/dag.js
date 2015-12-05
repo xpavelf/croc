@@ -78,8 +78,7 @@ DAG.prototype.filter = function (filterFunction) {
   this.nodes().forEach(function (name) {
     var pkg = self.node(name)
     if (filterFunction(name)) {
-      var clone = JSON.parse(JSON.stringify(pkg))
-      newDAG.addNode(clone.name, clone)
+      newDAG.addNode(pkg.name, pkg)
     }
   })
   newDAG.nodes().forEach(function (name) {

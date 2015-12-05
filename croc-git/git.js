@@ -2,8 +2,8 @@ var path = require('path')
 var shell = require('shelljs')
 var cwd = process.cwd()
 
-exports.changed = function (packages, sha) {
-  return packages.filter(function (name) {
+exports.changed = function (packages, includePkgs, sha) {
+  return includePkgs.filter(function (name) {
     // Getting changes from git for each package is slower in monolithic
     // repositories, but enables working with multiple git repositories
     var pkg = packages.node(name)

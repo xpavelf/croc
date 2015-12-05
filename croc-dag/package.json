@@ -1,6 +1,6 @@
 {
   "name": "croc-dag",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Directed Asyclic Graph for Croc",
   "main": "lib/index.js",
   "scripts": {
