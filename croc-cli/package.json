@@ -1,6 +1,6 @@
 {
   "name": "croc",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "description": "monolithic repository manager",
   "bin": {
     "croc": "./bin/croc-cli.js"

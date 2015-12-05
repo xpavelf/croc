@@ -16,19 +16,20 @@ Well croc goes away from npm standard approach having packages in separated repo
 
 
 ```
- Usage:
-   croc ls [options] [<package>...]
-   croc deps [options] [<package>...]
-   croc link [--strict]
-   croc install
-   croc test
-   croc build
-   croc publish
-   croc exec CMD
+Usage:
+  croc [options] ls [<package>...]
+  croc [options] deps [<package>...]
+  croc [options] exec CMD [<package>...]
+  croc [options] pexec CMD [<package>...]
+  croc [options] link
+  croc [options] (install | test | publish) [<package> ..]
 
- Options:
-   -h --help     Show this screen.
-   --version     Show version.
-   --json        Show information in JSON format.
-   --strict      Dependencies must statisfy version (semver)
+Options:
+  -h, --help             Show this screen.
+  -v, --version          Show version.
+  --json                 Show information in JSON format.
+  -p, --predecessors     Include projects depending on the packages.
+  -x, --strict           Dependencies must statisfy version (semver)
+  -c, --changed          Show only projects that is changed.
+  -s, --since=SHA        Commit to diff against [default: master]
 ```

@@ -1,18 +1,16 @@
 #!/usr/bin/env node
 var doc = '' +
   'Usage:                                                                                \n' +
-  '  croc ls [-c -s SHA] [-px] [--json] [<package>...]                                   \n' +
-  '  croc deps [-c -s SHA] [-px] [--json] [<package>...]                                 \n' +
-  '  croc link [--strict]                                                                \n' +
-  '  croc install                                                                        \n' +
-  '  croc test                                                                           \n' +
-  '  croc publish                                                                        \n' +
-  '  croc [-cp] exec CMD [<package>...]                                                  \n' +
-  '  croc [-cp] pexec CMD [<package>...]                                                 \n' +
+  '  croc [options] ls [<package>...]                                                    \n' +
+  '  croc [options] deps [<package>...]                                                  \n' +
+  '  croc [options] exec CMD [<package>...]                                              \n' +
+  '  croc [options] pexec CMD [<package>...]                                             \n' +
+  '  croc [options] link                                                                 \n' +
+  '  croc [options] (install | test | publish) [<package> ..]                            \n' +
   '                                                                                      \n' +
   'Options:                                                                              \n' +
-  '  -h --help              Show this screen.                                            \n' +
-  '  --version              Show version.                                                \n' +
+  '  -h, --help             Show this screen.                                            \n' +
+  '  -v, --version          Show version.                                                \n' +
   '  --json                 Show information in JSON format.                             \n' +
   '  -p, --predecessors     Include projects depending on the packages.                  \n' +
   '  -x, --strict           Dependencies must statisfy version (semver)                  \n' +
