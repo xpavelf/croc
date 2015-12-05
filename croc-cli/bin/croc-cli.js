@@ -1,21 +1,22 @@
 #!/usr/bin/env node
-var doc = '' +
-  'Usage:                                                                                \n' +
-  '  croc [options] ls [<package>...]                                                    \n' +
-  '  croc [options] deps [<package>...]                                                  \n' +
-  '  croc [options] exec CMD [<package>...]                                              \n' +
-  '  croc [options] pexec CMD [<package>...]                                             \n' +
-  '  croc [options] link                                                                 \n' +
-  '  croc [options] (install | test | publish) [<package> ..]                            \n' +
-  '                                                                                      \n' +
-  'Options:                                                                              \n' +
-  '  -h, --help             Show this screen.                                            \n' +
-  '  -v, --version          Show version.                                                \n' +
-  '  --json                 Show information in JSON format.                             \n' +
-  '  -p, --predecessors     Include projects depending on the packages.                  \n' +
-  '  -x, --strict           Dependencies must statisfy version (semver)                  \n' +
-  '  -c, --changed          Show only projects that is changed.                          \n' +
-  '  -s, --since=SHA        Commit to diff against [default: master]                     \n'
+var doc = [
+  'Usage:',
+  '  croc [options] ls [<package>...]',
+  '  croc [options] deps [<package>...]',
+  '  croc [options] exec CMD [<package>...]',
+  '  croc [options] pexec CMD [<package>...]',
+  '  croc [options] link',
+  '  croc [options] (install | test | publish) [<package> ..]',
+  '',
+  'Options:',
+  '  -h, --help             Show this screen.',
+  '  -v, --version          Show version.',
+  '  --json                 Show information in JSON format.',
+  '  -p, --predecessors     Include projects depending on the packages.',
+  '  -x, --strict           Dependencies must statisfy version (semver)',
+  '  -c, --changed          Show only projects that is changed.',
+  '  -s, --since=SHA        Commit to diff against [default: master]'
+].join('\n')
 
 var docopt = require('docopt').docopt
 var args = docopt(doc, { version: require('../package.json').version })
