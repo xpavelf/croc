@@ -6,7 +6,6 @@ var doc = '' +
   '  croc link [--strict]                                                                \n' +
   '  croc install                                                                        \n' +
   '  croc test                                                                           \n' +
-  '  croc build                                                                          \n' +
   '  croc publish                                                                        \n' +
   '  croc [-cp] exec CMD [<package>...]                                                  \n' +
   '  croc [-cp] pexec CMD [<package>...]                                                 \n' +
@@ -62,8 +61,6 @@ if (args.ls) {
   link.link(pkgs)
 } else if (args.test) {
   exec.pexec(pkgs, 'npm test')
-} else if (args.build) {
-  exec.pexec(pkgs, 'npm run build')
 } else if (args.install) {
   exec.pexec(pkgs, 'npm install')
 } else if (args.publish) {

@@ -11,5 +11,4 @@ script:
   - croc-cli/bin/croc-cli.js deps
   - croc-cli/bin/croc-cli.js link
   - croc-cli/bin/croc-cli.js install
-  - croc-cli/bin/croc-cli.js build
   - croc-cli/bin/croc-cli.js test
