@@ -15,7 +15,7 @@ var doc = '' +
   '  -h --help              Show this screen.                                            \n' +
   '  --version              Show version.                                                \n' +
   '  --json                 Show information in JSON format.                             \n' +
-  '  -p, --predecessors     Include procets depending on the packages.                   \n' +
+  '  -p, --predecessors     Include projects depending on the packages.                  \n' +
   '  -x, --strict           Dependencies must statisfy version (semver)                  \n' +
   '  -c, --changed          Show only projects that is changed.                          \n' +
   '  -s, --since=SHA        Commit to diff against [default: master]                     \n'
