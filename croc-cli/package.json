@@ -22,6 +22,7 @@
   "dependencies": {
     "chalk": "~1.1.1",
     "croc-deps": "~0.0.2",
+    "croc-dag-dot": "~0.0.1",
     "croc-exec": "~0.0.2",
     "croc-git": "~0.0.1",
     "croc-link": "~0.0.2",

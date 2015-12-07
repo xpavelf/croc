@@ -12,6 +12,7 @@ var doc = [
   '  -h, --help             Show this screen.',
   '  -v, --version          Show version.',
   '  --json                 Show information in JSON format.',
+  '  --dot                  Show information in DOT format.',
   '  -p, --predecessors     Include projects depending on the packages.',
   '  -x, --strict           Dependencies must statisfy version (semver)',
   '  -c, --changed          Show only projects that is changed.',
@@ -21,6 +22,7 @@ var doc = [
 var docopt = require('docopt').docopt
 var args = docopt(doc, { version: require('../package.json').version })
 
+var dotWriter = require('croc-dag-dot')
 var deps = require('croc-deps')
 var link = require('croc-link')
 var exec = require('croc-exec')
@@ -47,12 +49,16 @@ pkgs = pkgs.filter(function (name) {
 if (args.ls) {
   if (args['--json']) {
     printer.packages(pkgs)
+  } else if (args['--dot']) {
+    console.log(dotWriter(pkgs))
   } else {
     printer.packagesTable(pkgs)
   }
 } else if (args.deps) {
   if (args['--json']) {
     printer.dependencies(pkgs)
+  } else if (args['--dot']) {
+    console.log(dotWriter(pkgs))
   } else {
     printer.dependenciesTable(pkgs)
   }

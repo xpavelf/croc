@@ -1,0 +1,24 @@
+{
+  "name": "croc-dag-dot",
+  "version": "0.0.1",
+  "description": "DOT language writer for croc-dag",
+  "main": "index.js",
+  "scripts": {
+    "test": "standard && mocha"
+  },
+  "author": "Sigurd Fosseng <sigurd@fosseng.net>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xpavelf/croc.git"
+  },
+  "bugs": {
+    "url": "https://github.com/xpavelf/croc/issues"
+  },
+  "homepage": "https://github.com/xpavelf/croc#readme",
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "croc-dag": "~0.0.3",
+    "mocha": "^2.3.4",
+    "standard": "^5.4.1"
+  }
+}
