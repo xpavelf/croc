@@ -19,7 +19,7 @@ exports.changed = function (packages, includePkgs, sha) {
             return path.join(cwd, f)
           })
     var changedInProject = changes.filter(function (changed) {
-      return changed.startsWith(dir)
+      return changed.startsWith(dir + '/')
     })
     return changedInProject.length !== 0
   })
