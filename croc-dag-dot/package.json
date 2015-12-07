@@ -1,6 +1,6 @@
 {
   "name": "croc-dag-dot",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "DOT language writer for croc-dag",
   "main": "index.js",
   "scripts": {
