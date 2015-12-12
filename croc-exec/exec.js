@@ -22,7 +22,11 @@ exports.exec = function (packages, command) {
 
     shelljs.cd(path.dirname(pkg._file))
     console.error(prefixCmd(pkg.name, cmd))
-    shelljs.exec(cmd)
+    var child = shelljs.exec(cmd)
+    if (child.code) {
+      console.log(chalk.red('ERROR') + ' exited with code ' + child.code)
+      process.exit(1)
+    }
   })
 }
 
@@ -47,6 +51,13 @@ exports.pexec = function (packages, command) {
           })
       }
     })
-    child.on('exit', callback)
+    child.on('close', function (code) {
+      if (code === 0) {
+        callback()
+      } else {
+        console.log(prefixOut(name, chalk.red('ERROR') + ' exited with code ' + code))
+        process.exit(1)
+      }
+    })
   })
 }
