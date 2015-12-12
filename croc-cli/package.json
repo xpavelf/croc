@@ -28,5 +28,8 @@
     "croc-link": "~0.0.2",
     "docopt": "~0.6.2",
     "text-table": "~0.2.0"
+  },
+  "devDependencies": {
+    "standard": "^5.4.1"
   }
 }
