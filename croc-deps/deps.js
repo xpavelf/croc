@@ -42,3 +42,13 @@ exports.getPredecessors = function (graph, packages) {
   })
   return included
 }
+
+exports.getSuccessors = function (graph, packages) {
+  var included = []
+  packages.forEach(function (name) {
+    dag.alg.dfs(graph, name).forEach(function (name) {
+      included.push(name)
+    })
+  })
+  return included
+}

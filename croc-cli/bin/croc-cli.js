@@ -14,9 +14,10 @@ var doc = [
   '  --json                 Show information in JSON format.',
   '  --dot                  Show information in DOT format.',
   '  -p, --predecessors     Include projects depending on the packages.',
+  '  -s, --successors       Include projects depending on the packages.',
   '  -x, --strict           Dependencies must statisfy version (semver)',
   '  -c, --changed          Show only projects that is changed.',
-  '  -s, --since=SHA        Commit to diff against [default: master]'
+  '  --since=SHA            Commit to diff against. [default: master]'
 ].join('\n')
 
 var docopt = require('docopt').docopt
@@ -41,6 +42,9 @@ if (args['--changed']) {
 }
 if (args['--predecessors']) {
   includePkgs = includePkgs.concat(deps.getPredecessors(pkgs, includePkgs))
+}
+if (args['--successors']) {
+  includePkgs = includePkgs.concat(deps.getSuccessors(pkgs, includePkgs))
 }
 pkgs = pkgs.filter(function (name) {
   return includePkgs.indexOf(name) >= 0
