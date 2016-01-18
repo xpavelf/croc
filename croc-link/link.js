@@ -9,7 +9,7 @@ function getBinaries (pkg) {
   if (typeof bin === 'string') {
     bins = [{name: name, bin: bin}]
   } else {
-    bins = Object.keys(bin).map(name => {
+    bins = Object.keys(bin).map(function (name) {
       return {name, bin: bin[name]}
     })
   }
