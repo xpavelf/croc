@@ -7,7 +7,7 @@ function getBinaries (pkg) {
   var bin = pkg.bin
   var bins = []
   if (typeof bin === 'string') {
-    bins = [{name, bin}]
+    bins = [{name: name, bin: bin}]
   } else {
     bins = Object.keys(bin).map(name => {
       return {name, bin: bin[name]}
