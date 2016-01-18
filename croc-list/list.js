@@ -48,10 +48,10 @@ exports.packages = function () {
   return _getProjects()
     .reduce(function (sum, f) {
       var info = require(f)
-      if (info.name && info.version) {
+      if (info.name) {
         sum[info.name] = { name: info.name, version: info.version, file: f }
       } else {
-        console.warn('WARN: Package ignored (missing name or version) ' + f)
+        console.warn('WARN: Package ignored (missing name) ' + f)
       }
       return sum
     }, {})

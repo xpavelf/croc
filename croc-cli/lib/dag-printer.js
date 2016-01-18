@@ -35,7 +35,7 @@ exports.packagesTable = function (dag) {
     thead: ['Package', 'Version', 'Location'],
     tbody: dag.nodes().map(function (key) {
       var pkg = dag.node(key)
-      return [chalk.yellow(pkg.name), pkg.version, pkg._file]
+      return [chalk.yellow(pkg.name), pkg.version || '', pkg._file]
     }),
     options: { align: ['l', 'r', 'l'] }
   })
@@ -47,7 +47,7 @@ exports.dependenciesTable = function (dag) {
     tbody: dag.nodes().map(function (key) {
       var pkg = dag.node(key)
       var name = pkg.name
-      var ver = pkg.version
+      var ver = pkg.version || ''
       var depon = dag.out(name).map(function (dep) {
         return dep + chalk.cyan('@' + dag.edge(name, dep))
       })
