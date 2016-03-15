@@ -1,6 +1,6 @@
 {
   "name": "croc-link",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "",
   "main": "link.js",
   "scripts": {
@@ -11,9 +11,9 @@
   "license": "GPL-3.0",
   "dependencies": {
     "croc-deps": "~0.0.2",
-    "shelljs": "~0.5.3"
+    "shelljs": "^0.6.0"
   },
   "devDependencies": {
-    "standard": "^5.4.1"
+    "standard": "^6.0.8"
   }
 }

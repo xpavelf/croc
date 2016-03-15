@@ -1,6 +1,6 @@
 {
   "name": "croc-dag-dot",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "DOT language writer for croc-dag",
   "main": "index.js",
   "scripts": {
@@ -19,6 +19,6 @@
   "devDependencies": {
     "croc-dag": "~0.0.3",
     "mocha": "^2.3.4",
-    "standard": "^5.4.1"
+    "standard": "^6.0.8"
   }
 }

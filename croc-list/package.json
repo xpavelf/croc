@@ -1,6 +1,6 @@
 {
   "name": "croc-list",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "",
   "main": "list.js",
   "scripts": {
@@ -10,9 +10,9 @@
   "author": "Pavel Fatrdla",
   "license": "GPL-3.0",
   "dependencies": {
-    "shelljs": "~0.5.3"
+    "shelljs": "^0.6.0"
   },
   "devDependencies": {
-    "standard": "^5.4.1"
+    "standard": "^6.0.8"
   }
 }

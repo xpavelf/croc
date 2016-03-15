@@ -1,6 +1,6 @@
 {
   "name": "croc",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "description": "monolithic repository manager",
   "bin": {
     "croc": "./bin/croc-cli.js"
@@ -30,6 +30,6 @@
     "text-table": "~0.2.0"
   },
   "devDependencies": {
-    "standard": "^5.4.1"
+    "standard": "^6.0.8"
   }
 }
