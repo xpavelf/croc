@@ -1,6 +1,6 @@
 {
   "name": "croc-git",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Croc git integration",
   "main": "git.js",
   "scripts": {
