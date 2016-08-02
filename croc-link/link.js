@@ -51,11 +51,12 @@ exports.link = function (pkgs) {
         shelljs.mkdir('-p', binPath)
         getBinFiles(binPackage).forEach(function (bin) {
           var targetPath = path.join(binPath, bin.name)
+          var linkTarget = path.relative(binPath, bin.file)
           console.error('chmod u+x ' + bin.file)
           shelljs.chmod('u+x', bin.file)
           shelljs.rm(targetPath)
-          console.error('ln -sf ' + bin.file + ' ' + targetPath)
-          shelljs.ln('-sf', bin.file, targetPath)
+          console.error('ln -sf ' + linkTarget + ' ' + targetPath)
+          shelljs.ln('-sf', linkTarget, targetPath)
         })
       }
     })
