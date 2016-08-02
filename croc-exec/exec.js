@@ -1,3 +1,4 @@
+var Transform = require('stream').Transform
 var dag = require('croc-dag')
 var deps = require('croc-deps')
 var path = require('path')
@@ -30,6 +31,27 @@ exports.exec = function (packages, command) {
   })
 }
 
+function prefixStream (packageName) {
+  var prefix = prefixOut(packageName, '')
+  var ts = new Transform()
+  var currentLine = ''
+  function write (line) {
+    if (line.trim() !== '') {
+      ts.push(prefix + line + '\n')
+    }
+  }
+  ts._transform = function (chunk, enc, cb) {
+    var split = (currentLine + chunk.toString()).split(/\r?\n/)
+    currentLine = split.pop()
+    split.forEach(write)
+    cb()
+  }
+  ts._flush = function (cb) {
+    write(currentLine)
+    cb()
+  }
+  return ts
+}
 exports.pexec = function (packages, command) {
   dag.alg.ordered(packages, function (name, callback) {
     var pkg = packages.node(name)
@@ -41,16 +63,14 @@ exports.pexec = function (packages, command) {
     console.error(prefixCmd(pkg.name, cmd))
 
     var child = shelljs.exec(cmd, {async: true, silent: true})
-    child.stdout.on('data', function (data) {
-      var filtered = data.toString('utf8').replace('\r', '')
-      if (filtered) {
-        filtered.trim().split('\n')
-          .map(prefixOut.bind(null, pkg.name))
-          .forEach(function (line) {
-            console.log(line)
-          })
-      }
-    })
+    child.stdout
+      .pipe(prefixStream(pkg.name))
+      .pipe(process.stdout)
+
+    child.stderr
+      .pipe(prefixStream(pkg.name))
+      .pipe(process.stderr)
+
     child.on('close', function (code) {
       if (code === 0) {
         callback()
