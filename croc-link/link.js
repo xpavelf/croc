@@ -39,10 +39,11 @@ exports.link = function (pkgs) {
       var linkPath = path.join(path.dirname(pkgjson), 'node_modules')
       var link = path.join(linkPath, name)
       var targetPath = path.dirname(pkgs.node(name)._file)
+      var relativeTargetPath = path.relative(linkPath, targetPath)
 
       shelljs.mkdir('-p', path.dirname(link)) // scoped packages
-      shelljs.ln('-sf', targetPath, link)
-      console.error('ln -sf ' + targetPath + ' ' + link)
+      shelljs.ln('-sf', relativeTargetPath, link)
+      console.error('ln -sf ' + relativeTargetPath + ' ' + link)
 
       if (pkgs.node(name).bin) {
         var binPackage = pkgs.node(name)
