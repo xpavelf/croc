@@ -18,7 +18,7 @@
   "license": "GPL-3.0",
   "devDependencies": {
     "croc-dag": "~0.0.3",
-    "mocha": "^2.3.4",
+    "mocha": "^3.0.0",
     "standard": "^6.0.8"
   }
 }
