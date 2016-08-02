@@ -42,7 +42,7 @@ exports.pexec = function (packages, command) {
 
     var child = shelljs.exec(cmd, {async: true, silent: true})
     child.stdout.on('data', function (data) {
-      var filtered = data.replace('\r', '')
+      var filtered = data.toString('utf8').replace('\r', '')
       if (filtered) {
         filtered.trim().split('\n')
           .map(prefixOut.bind(null, pkg.name))
